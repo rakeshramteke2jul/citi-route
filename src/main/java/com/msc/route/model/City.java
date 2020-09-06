@@ -24,10 +24,10 @@ public class City {
 	@Override
 	public String toString() {
 
-		return "City{" + "name='" + name + "'" + ", nearby='" + nearByCityPrint() + "'}";
+		return "City{" + "name='" + name + "'" + ", nearby='" + printNearByCity() + "'}";
 	}
 
-	public String nearByCityPrint() {
+	public String printNearByCity() {
 		return nearby.stream().map(City::getName).collect(Collectors.joining(","));
 	}
 

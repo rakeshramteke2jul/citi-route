@@ -1,5 +1,7 @@
 package com.msc.route.controller;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,5 +30,28 @@ public class CitiRouteController {
 		return routeConnector.isConnected(originCity, destCity);
 
 	}
+	
+	@GetMapping(value = "/", produces = "text/html")
+    public String info() {
+
+        StringBuilder html = new StringBuilder();
+
+        html.append("<!DOCTYPE html><head><meta charset=\"utf-8\"><title>City Data</title></head><body>")
+                .append("<h2>City List</h2>")
+                .append("<ul>");
+
+        Collection<City> cities = dataProcessor.getCityMap().values();
+        for (City city : cities) {
+            html.append("<li>")
+                    .append(city.getName())
+                    .append(" &rarr; ")
+                    .append(city.printNearByCity())
+                    .append("</li>");
+        }
+        html.append("</ul>");
+        html.append("</body></html>");
+        return html.toString();
+    }
+
 
 }
