@@ -6,68 +6,61 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class City {
-	
-	 private String name;
+	private String name;
 
-	    private Set<City> nearby = new HashSet<>();
+	private Set<City> nearby = new HashSet<>();
 
-	    private City(String name) {
-	      //  Objects.requireNonNull(name);
-	        this.name = name.trim().toUpperCase();
-	    }
+	private City(String name) {
+		this.name = name.trim().toUpperCase();
+	}
 
-	    private City() {
-	    }
+	private City() {
+	}
 
-	    public static City build(String name) {
-	        return new City(name);
-	    }
+	public static City build(String name) {
+		return new City(name);
+	}
 
-	    @Override
-	    public String toString() {
+	@Override
+	public String toString() {
 
-	        return "City{" +
-	                "name='" + name + "'" +
-	                ", nearby='" + prettyPrint() +
-	                "'}";
-	    }
+		return "City{" + "name='" + name + "'" + ", nearby='" + nearByCityPrint() + "'}";
+	}
 
-	    public String prettyPrint() {
-	        return nearby
-	                .stream()
-	                .map(City::getName)
-	                .collect(Collectors.joining(","));
-	    }
+	public String nearByCityPrint() {
+		return nearby.stream().map(City::getName).collect(Collectors.joining(","));
+	}
 
-	    public String getName() {
-	        return name;
-	    }
+	public String getName() {
+		return name;
+	}
 
-	    public void setName(String name) {
-	        this.name = name;
-	    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-	    public City addNearby(City city) {
-	        nearby.add(city);
-	        return this;
-	    }
+	public City addNearby(City city) {
+		nearby.add(city);
+		return this;
+	}
 
-	    public Set<City> getNearby() {
-	        return nearby;
-	    }
+	public Set<City> getNearby() {
+		return nearby;
+	}
 
-	    @Override
-	    public boolean equals(Object o) {
-	        if (this == o) return true;
-	        if (!(o instanceof City)) return false;
-	        City city = (City) o;
-	        return Objects.equals(name, city.name);
-	    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (!(o instanceof City))
+			return false;
+		City city = (City) o;
+		return Objects.equals(name, city.name);
+	}
 
-	    @Override
-	    public int hashCode() {
-	        return Objects.hash(name);
-	    }
-
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
 
 }
