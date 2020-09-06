@@ -14,20 +14,19 @@ public class CitiRouteController {
 
 	@Autowired
 	RouteConnectorServiceImpl routeConnector;
-	
+
 	@Autowired
 	RouteDataProcessor dataProcessor;
-	
+
 	@GetMapping(value = "/connected", produces = "text/plain")
-	public String getRoute( @RequestParam(value ="origin", required=true) String origin, @RequestParam(value="destination",required=true) String desti) {
-		
-		 City originCity = dataProcessor.getCity(origin.toUpperCase());
-	     City destCity = dataProcessor.getCity(desti.toUpperCase());
-	     
-	    	return routeConnector.isConnected(originCity, destCity);
-		
+	public String checkConnectedRoute(@RequestParam(value = "origin", required = true) String origin,
+			@RequestParam(value = "destination", required = true) String desti) {
+
+		City originCity = dataProcessor.getCity(origin.toUpperCase());
+		City destCity = dataProcessor.getCity(desti.toUpperCase());
+
+		return routeConnector.isConnected(originCity, destCity);
+
 	}
-	
-	
 
 }

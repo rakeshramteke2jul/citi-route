@@ -38,6 +38,7 @@ public class RouteDataProcessor {
 		return cityMap;
 	}
 
+	@SuppressWarnings("resource")
 	@PostConstruct
 	private void read() throws IOException {
 
